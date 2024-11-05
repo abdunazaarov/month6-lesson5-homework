@@ -1,57 +1,64 @@
 .product-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 1rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
-    // &:hover {
-    // //   transform: scale(1.01);
-        
-    // }
-  
-    .product-image {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      object-fit: cover;
-    }
-  
-    .product-title {
-      font-size: 1.8rem;
-      font-weight: bold;
-      margin: 0.8rem 0;
-    }
-  
-    .product-price {
-      color: #ff6347;
-      font-weight: bold;
-    }
-  
-    .product-description {
-      font-size: 1.2rem;
-      color: #777;
-      margin: 0.5rem 0;
-    }
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 
-    .product__btn{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-top: 15px;
-        padding: 20px 0;
-        .product-rating {
-            font-size: 1rem;
-            color: #ffb400;
-          }
-        button{
-            padding: 13px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 20px;
-            font-weight: 800;
-            background-color: #DC780B;
-            color: #fff;
-        }
+  &:hover {
+    transform: scale(1.0007);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: black;
+    margin-bottom: 12px;
+  }
+
+  p {
+    font-size: 14px;
+    color: #222;
+    opacity: 80%;
+    margin-bottom: 20px;
+  }
+  .category__bottom{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    button{
+      padding: 10px 15px;
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+      background-color: #DC780B;
+      border: none;
+      border-radius: 4px;
     }
   }
-  
+
+  .price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #DC780B;
+    margin-top: 8px;
+  }
+}
+
+.category {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);  
+  font-weight: 500;
+  margin-bottom: 8px;
+}

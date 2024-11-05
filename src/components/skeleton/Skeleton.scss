@@ -1,0 +1,43 @@
+.skeleton-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  opacity: 0.8;
+  animation: shimmer 1.5s infinite ease;
+
+  @keyframes shimmer {
+    0% { opacity: 0.8; }
+    50% { opacity: 1; }
+    100% { opacity: 0.8; }
+  }
+
+  .skeleton-image,
+  .skeleton-title,
+  .skeleton-description,
+  .skeleton-price {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+  }
+
+  .skeleton-image {
+    height: 200px;
+  }
+
+  .skeleton-title {
+    height: 20px;
+    width: 70%;
+  }
+
+  .skeleton-description {
+    height: 16px;
+    width: 90%;
+  }
+
+  .skeleton-price {
+    height: 20px;
+    width: 40%;
+  }
+}

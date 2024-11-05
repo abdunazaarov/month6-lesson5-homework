@@ -1,27 +1,57 @@
-import React, { useEffect, useState } from 'react';
-import Product from './Product';
-import './ProductList.scss';
+import React, { useState } from "react";
+import useFetch from "../../hook/useFetch";
+import Product from "./Product";
+import Skeleton from "../skeleton/Skeleton";
+import "./ProductList.scss";
 
 function ProductList() {
-  const [products, setProducts] = useState([]);
+  const [category, setCategory] = useState("all");
+  const [limit, setLimit] = useState(6);
 
-  useEffect(() => {
-    fetch('https://dummyjson.com/products')
-      .then(res => res.json())
-      .then(data => setProducts(data.products.slice(0, 9))) 
-      .catch(error => console.error("Error fetching products:", error));
-  }, []);
+  const { data, loading, error } = useFetch("https://dummyjson.com/products");
+
+  if (error) return <p>Error: {error}</p>;
+
+
+  const filteredProducts = data && data.products
+    ? data.products.filter((product) =>
+        category === "all" ? true : product.category === category
+      )
+    : [];
+
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value);
+  };
+
+  const handleSeeMore = () => {
+    setLimit((prevLimit) => prevLimit + 6);
+  };
 
   return (
     <div className="product-list">
-      <h1>Food Full of Treaty Love</h1>
-      <p>There are many things are needed to start the Fast Food Business. You need not only Just Food Stalls with Persons but also specialized equipment, Skills to manage Customers.</p>
-      <div className="product-list-grid container">
-        {products.map(product => (
-          <Product key={product.id} product={product} />
-        ))}
+      <div className="filter">
+        <label htmlFor="category">Category:</label>
+        <select id="category" onChange={handleCategoryChange}>
+          <option value="all">All</option>
+          <option value="beauty">Beauty</option>
+          <option value="groceries">Groceries</option>
+          <option value="fragrances">Fragrances</option>
+        </select>
       </div>
-      <button className="learn-more">Learn More</button>
+
+      <div className="products">
+        {loading
+          ? Array.from({ length: 6 }).map((_, index) => <Skeleton key={index} />)
+          : filteredProducts.slice(0, limit).map((product) => (
+              <Product key={product.id} product={product} />
+            ))}
+      </div>
+
+      {limit < filteredProducts.length && (
+        <button onClick={handleSeeMore} className="see-more">
+          See More
+        </button>
+      )}
     </div>
   );
 }
